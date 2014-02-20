@@ -23,6 +23,8 @@
 
 #include <clearsync/csplugin.h>
 
+#include <unistd.h>
+
 #include <sys/select.h>
 #include <sys/stat.h>
 
