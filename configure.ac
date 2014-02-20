@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.63])
 AC_INIT([csplugin-filesync], [1.0], [http://www.clearfoundation.com/docs/developer/bug_tracker/])
-AM_INIT_AUTOMAKE([csplugin-filesync], [1.0])
+AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([csplugin-filesync.cpp])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
@@ -12,14 +12,15 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_PROG_CXX
 AC_PROG_INSTALL
 AM_PROG_LIBTOOL
-AC_PROG_RANLIB
 
 # Checks for libraries.
 #AC_CHECK_LIB([rsync], [rs_strerror], [], [AC_MSG_ERROR([librsync not found.])])
 AC_CHECK_LIB([crypto], [AES_encrypt], [], [AC_MSG_ERROR([libcrypto not found.])])
 
 # Checks for header files.
-AC_CHECK_HEADERS([clearsync/csplugin.h])
+AC_LANG_PUSH([C++])
+AC_CHECK_HEADERS([clearsync/csplugin.h], [], [AC_MSG_ERROR([clearsync header files not found.])])
+AC_LANG_POP([C++])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
