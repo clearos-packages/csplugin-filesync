@@ -815,7 +815,6 @@ void csPluginFileSyncSessionSlave::Run()
 {
     PacketId id;
     PacketArg arg;
-    ssize_t length;
     map<string, csPluginFileSyncFile *>::iterator i;
 
     for (i = config->file.begin(); i != config->file.end(); i++) {
@@ -833,7 +832,7 @@ void csPluginFileSyncSessionSlave::Run()
             NULL, SHA_DIGEST_LENGTH + i->first.size());
 
         id = idNone;
-        length = ReadPacket(id, arg);
+        ReadPacket(id, arg);
         if (id == idException) {
             csLog::Log(csLog::Warning,
                 "%s: Remote file exception: %s",
@@ -875,9 +874,8 @@ void csPluginFileSyncSessionSlave::SynchronizeFile(csPluginFileSyncFile *file)
     memcpy(&uint32_mode, ptr, sizeof(uint32_t));
     mode = (mode_t)uint32_mode;
 
-    uid_t uid;
     try {
-        uid = ::csGetUserId(user);
+        ::csGetUserId(user);
     } catch (csException &e) {
         csLog::Log(csLog::Error,
             "%s: User not found for file: %s",
@@ -885,9 +883,8 @@ void csPluginFileSyncSessionSlave::SynchronizeFile(csPluginFileSyncFile *file)
         WritePacket(idException);
         return;
     }
-    gid_t gid;
     try {
-        gid = ::csGetUserId(group);
+        ::csGetUserId(group);
     } catch (csException &e) {
         csLog::Log(csLog::Error,
             "%s: Group not found for file: %s",

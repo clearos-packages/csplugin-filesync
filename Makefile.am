@@ -1,7 +1,7 @@
 AUTOMAKE_OPTIONS = foreign
 ACLOCAL_AMFLAGS = -I m4
 
-EXTRA_DIST = csplugin-filesync.conf
+EXTRA_DIST = autogen.sh csplugin-filesync.conf
 
 AM_CFLAGS = ${CFLAGS}
 AM_CXXFLAGS = ${CXXFLAGS}
