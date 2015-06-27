@@ -1,7 +1,7 @@
 # ClearSync FileSync Plugin RPM spec
 Name: csplugin-filesync
 Version: 1.0
-Release: 13%{dist}
+Release: 14%{dist}
 Vendor: ClearFoundation
 License: GPL
 Group: System/Plugins
